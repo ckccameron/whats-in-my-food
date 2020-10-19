@@ -1,8 +1,10 @@
 <h2>Food Results</h2>
 
+<% @foods.each do |food| %>
 <section class="food">
-  <p class="code">GTIN/UPC Code:</p>
-  <p class="description">Description:</p>
-  <p class="brand-owner">Brand Owner:</p>
-  <p class="ingredients">Ingredients:</p>
-</section>
+  <p class="code">GTIN/UPC Code: <%= food.code %></p>
+  <p class="description">Description: <%= food.description %></p>
+  <p class="brand-owner">Brand Owner: <%= food.brand_owner %></p>
+  <p class="ingredients">Ingredients: <%= food.ingredients %></p>
+</section><br>
+<% end %>
