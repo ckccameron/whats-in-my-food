@@ -19,7 +19,7 @@ describe "foods index page" do
   describe "when a user enters query into search bar to find foods" do
     before :each do
       # response = File.read("spec/fixtures/sweet_potatoes_foods.json")
-      # stub_request
+      #
       visit root_path
 
       fill_in :q, with: "sweet potatoes"
@@ -34,7 +34,7 @@ describe "foods index page" do
     it "shows code, description, brand owner and ingredients for each food result" do
       expect(current_path).to eq(foods_path)
 
-      within first(."food") do
+      within first(".food") do
         expect(page).to have_css(".code")
         code = find(".code").text
         expect(code).to_not be_empty
