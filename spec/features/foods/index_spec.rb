@@ -18,8 +18,10 @@ require 'rails_helper'
 describe "foods index page" do
   describe "when a user enters query into search bar to find foods" do
     before :each do
-      # response = File.read("spec/fixtures/sweet_potatoes_foods.json")
-      #
+      response = File.read("spec/fixtures/sweet_potatoes_foods.json")
+      stub_request(:get, "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=#{ENV["FDC_API_KEY"]}&pageNumber=1&pageSize=10&query=sweet%20potatoes").
+        to_return(status: 200, body: response, headers: {})
+
       visit root_path
 
       fill_in :q, with: "sweet potatoes"
