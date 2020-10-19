@@ -2,7 +2,9 @@ require 'rails_helper'
 
 describe SearchFacade do
   it "returns ten food results from query" do
-    # response = File.read
+    response = File.read("spec/fixtures/sweet_potatoes_foods.json")
+    stub_request(:get, "https://api.nal.usda.gov/fdc/v1/foods/search?api_key=#{ENV["FDC_API_KEY"]}&pageNumber=1&pageSize=10&query=sweet%20potatoes").
+      to_return(status: 200, body: response, headers: {})
 
     query = "sweet potatoes"
     results = SearchFacade.foods_search(query)
